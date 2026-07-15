@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>austinshop </title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Prompt', sans-serif; background: linear-gradient(135deg, #fff9fb 0%, #fcecf2 100%); min-height: 100vh; }
+        @keyframes float-up-down { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(10deg); } }
+        @keyframes float-left-right { 0%, 100% { transform: translateX(0px) rotate(0deg); } 50% { transform: translateX(15px) rotate(-10deg); } }
+        @keyframes pulse-soft { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        @keyframes dash-animation { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
+        .animate-dash { animation: dash-animation 1s linear infinite; }
+        .anim-float-1 { animation: float-up-down 4s ease-in-out infinite; }
+        .anim-float-2 { animation: float-up-down 5s ease-in-out infinite 1.5s; }
+        .anim-float-3 { animation: float-left-right 6s ease-in-out infinite; }
+        .anim-float-4 { animation: float-left-right 4.5s ease-in-out infinite 2s; }
+        .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
+        .anim-spin { animation: spin-slow 8s linear infinite; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.15); }
+        .virtual-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        ::-webkit-scrollbar { width: 0px; }
+    </style>
+    
+    <script>
+        tailwind.config = { theme: { extend: { colors: { cream: { 50: '#fffdfa', 100: '#fdf5ee' }, brown: { 300: '#d4b49e', 400: '#bc9680', 500: '#8b5e3c', 600: '#5c3d26' }, pink: { 100: '#ffe0ec', 300: '#ffa3c6', 400: '#ff85b3', 500: '#ff66a0' } } } } }
+    </script>
+</head>
+<body class="flex flex-col items-center py-6 px-4 text-brown-600 relative overflow-x-hidden">
+
+    <!-- Background SVGs -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <svg class="absolute top-[5%] left-[10%] w-8 h-8 text-pink-300 anim-float-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-brown-500/95 backdrop-blur-sm text-cream-50 px-6 py-3 rounded-full shadow-xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50 flex items-center gap-2 text-sm border border-brown-400">
+        คัดลอกเลขบัญชีแล้ว
+    </div>
+
+    <!-- Container -->
+    <div class="max-w-[420px] w-full relative z-10 space-y-5 pb-10">
+        
+        <!-- Header -->
+        <div class="text-center pt-2 pb-2">
+            <h1 class="text-2xl font-bold text-pink-500 flex items-center justify-center gap-2">Austinshop</h1>
+            <p class="text-sm font-medium text-brown-400 mt-1">รายละเอียดเน็ตฟลิกซ์ร้านอซิน</p>
+            <p class="text-xs text-brown-400 mt-1">รบกวนอ่านรายละเอียดให้ครบก่อนสั่งน้า</p>
+        </div>
+
+        <!-- Glass Card Content -->
+        <div class="glass-card rounded-[40px] p-4 relative z-10 space-y-6">
+            
+            <!-- Banner 1 -->
+            <div class="rounded-[28px] overflow-hidden shadow-sm border-[4px] border-white">
+                <img src="https://i.postimg.cc/wjygVJhG/mi-m-ch-x-122-20260702055730.png" alt="Banner 1" class="w-full">
+            </div>
+
+            <!-- กล่องเตือน 1 -->
+            <div class="bg-pink-100/50 border-2 border-pink-300 rounded-2xl p-4 relative overflow-hidden">
+                <div class="flex items-start gap-3 relative z-10">
+                    <div class="bg-pink-400 p-1.5 rounded-full text-white animate-bounce"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg></div>
+                    <div class="text-[13px] text-brown-600">
+                        <span class="font-bold text-pink-500">สำคัญ</span><br>
+                        กรุณาอ่านรายละเอียดให้ครบถ้วนก่อนสั่งซื้อ<br>
+                        กฎและรายละเอียดเป็นไปตามที่ร้านแจ้ง<br>
+                        <span class="text-[10px] text-brown-400">กฎแต่ละร้านไม่เหมือนกัน รับกฎไม่ได้ไปซื้อร้านอื่นได้เลย</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 2 -->
+            <img src="https://i.postimg.cc/BZFbRQKx/mi-m-ch-x-120-20260707011142.jpg" alt="Banner 2" class="w-full rounded-2xl">
+
+            <!-- กล่องเตือน 2 -->
+            <div class="bg-brown-500 border border-brown-600 rounded-2xl p-4 text-white relative overflow-hidden">
+                <div class="flex items-start gap-3 relative z-10">
+                    <div class="bg-white/20 p-1.5 rounded-full animate-pulse"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                    <div class="text-[13px]">
+                        <span class="font-bold">เมลโดนปิดร้านไม่รับเคลม</span><br>
+                        <span class="text-[10px] opacity-80">เคลมเฉพาะลูกค้าที่ซื้อประกันจอเพิ่มเท่านั้น</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner 3 -->
+            <img src="https://i.postimg.cc/t4NVwR88/mi-m-ch-x-148-20260716015620.png" alt="Banner 3" class="w-full rounded-2xl">
+
+            <!-- กล่องเตือน 3 -->
+            <div class="bg-pink-50/50 rounded-2xl p-4 relative overflow-hidden">
+                <div class="flex items-start gap-3 relative z-10 text-[13px] text-brown-600">
+                    <div class="text-pink-400">♥</div>
+                    <div>
+                        <span class="font-bold">ข้อตกลงร้าน</span><br>
+                        • จอลิมิตต้องรอเท่านั้นนะคะ<br> 
+                        • ไม่เคลมจอ !<br> 
+                        • ไม่อยากรอซื้อจอส่วนตัว
+                    </div>
+                </div>
+            </div>
+
+            <!-- กล่องเตือน 4 -->
+            <div class="bg-pink-100 rounded-2xl p-4 text-brown-600">
+                <div class="flex items-start gap-3 text-[13px]">
+                    <div class="animate-bounce">♥</div>
+                    <div>
+                        <span class="font-bold">ร้านมีรายละเอียดก่อนสั่งชัดเจน</span><br>
+                        <span class="text-[10px]">กรุณาอ่านและทำความเข้าใจรายละเอียดของร้านก่อนซื้อทุกครั้ง ไม่อ่านรายละเอียดมีปัญหาทีหลังทำร้านเสียหายดำเนินคดีเท่านั้น !</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-center text-brown-400">อ่านรายละเอียดให้ครบถ้วนก่อนสั่งซื้อ</p>
+        </div>
+    </div>
+
+    <script>
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => { toast.classList.remove('opacity-100', 'translate-y-0'); toast.classList.add('opacity-0', 'translate-y-4'); }, 2500);
+        }
+    </script>
+</body>
+</html>
